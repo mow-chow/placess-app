@@ -4,10 +4,10 @@ class UsersController < ApplicationController
         render json:@users.to_json(
             :include => {
                     :comments => {
-                        :only => [:likes, :content]
+                        :only => [ :content]
                     },
                     :places => {
-                        :only => [:name, :location, :image]
+                        :only => [:name]
                     }
           }
         )
@@ -19,10 +19,10 @@ class UsersController < ApplicationController
         render json: @user.to_json(
             :include => {
                     :comments => {
-                        :only => [:likes, :content]
+                        :only => [:content]
                     },
                     :places => {
-                        :only => [:name, :location, :image]
+                        :only => [:name]
                     }
           }
         )
@@ -31,14 +31,6 @@ class UsersController < ApplicationController
     def create
         @user = User.new(user_params)
         @user.save
-
-        if @user.save
-            render json:@user
-            # , status: :ok
-        else 
-            render json:{message: "username already taken"}
-            #  mesages: 
-        end
     end
 
     def addComments
@@ -48,6 +40,5 @@ class UsersController < ApplicationController
     private
     def user_params
       params.require(:user).permit!
-    #   (:id, :username, :bio, :image)
     end
 end

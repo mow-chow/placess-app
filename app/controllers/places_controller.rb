@@ -4,7 +4,7 @@ class PlacesController < ApplicationController
         render json:@places.to_json(
             :include => {
                 :comments => {
-                    :only => [:likes, :content]
+                    :only => [ :content]
                 }
             }
         )
@@ -15,7 +15,7 @@ class PlacesController < ApplicationController
         render json: @place.to_json(
             :include => {
                 :comments => {
-                    :only => [:likes, :content]
+                    :only => [:content]
                 }
             }
         )

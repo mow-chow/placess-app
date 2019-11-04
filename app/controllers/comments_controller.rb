@@ -4,7 +4,7 @@ class CommentsController < ApplicationController
         render json:@comments.to_json(
             :include => {
                     :place => {
-                        :only => [:name, :location, :image]
+                        :only => [:name]
                     },
                     :user => {
                         :only => [:username, :bio, :image]
@@ -38,6 +38,5 @@ class CommentsController < ApplicationController
     private
     def comment_params
       params.require(:comment).permit(:id, :likes, :content, :user_id, :place_id)
-        # users_attributes: [:id, :name], places_attributes: [:id, :name, :location, :image] )
     end
 end
