@@ -3,5 +3,5 @@ class User < ApplicationRecord
     has_many :places, through: :comments
 
 
-    # validates :username, uniqueness: {message: 'username already taken. try again!'}
+    validates :username, uniqueness: true
 end

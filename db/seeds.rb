@@ -11,12 +11,39 @@ Place.delete_all
 
 
 
-test_user = User.create(username: 'test', bio: 'user bio', image: 'user image')
-test_user_2 = User.create(username: 'test 2', bio: 'user bio', image: 'user image')
-    
+   
 # seed data with a list of atlanta neighborhoods to choose from
-test_place = Place.create(name: 'test  place', location: 'test location', image: 'img src')
-test_place_2 = Place.create(name: 'test  place 2', location: 'test location 2', image: 'img src')
+downtown_atlanta = Place.create(name: 'Downtown Atlanta', image: 'img src')
+midtown = Place.create(name: 'Midtown', image: 'img src')
+ansley_park = Place.create(name:'Ansley Park', image:'')
+atlantic_station = Place.create(name:'Atlantic Station', image:'')
+tech_square = Place.create(name:'Tech Square', image:'')
+home_park = Place.create(name:'Home Park', image:'')
+loring_heights = Place.create(name:'Loring Heights', image:'')
+sherwood_forest = Place.create(name:'Sherwood Forest', image:'')
+west_midtown = Place.create(name:'West Midtown', image:'')
+atkins_park = Place.create(name:'Atkisns Park', image:'')
+avondale_estates = Place.create(name:'Avondale Estates', image:'')
+cabbagetown = Place.create(name:'Cabbagetown', image:'')
+candler_park = Place.create(name:'Candler Park', image:'')
+druid_hills = Place.create(name:'Druid Hills', image:'')
+decatur = Place.create(name:'Decatur', image:'')
+east_atlanta = Place.create(name:'East Atlanta', image:'')
+east_lake = Place.create(name:'East Lake', image:'')
+edgewood = Place.create(name:'Edgewood', image:'')
+kirkwood = Place.create(name:'Kirkwood', image:'')
+inman_park = Place.create(name:'Inman Park', image:'')
+lake_claire = Place.create(name:'Lake Claire', image:'')
+lindridge = Place.create(name:'Lindridge-Martin Manor', image:'')
+lenox = Place.create(name:'Morningside-Lenox Park', image:'')
+oakland  = Place.create(name:'Oakland', image:'')
+old_forth_ward  = Place.create(name:'Old Fourth Ward', image:'')
+ormewood = Place.create(name:'Ormewood Park', image:'')
+piedmont  = Place.create(name:'Piedmont Heights', image:'')
+poncey  = Place.create(name:'Poncey-Highland', image:'')
+reynoldstown  = Place.create(name:'Reynoldstown', image:'')
+auburn  = Place.create(name:'Sweet Auburn', image:'')
+scottdale  = Place.create(name:'Scottdale', image:'')
+v_highland  = Place.create(name:'Virginia-Highland', image:'')
 
-test_comment = Comment.create(likes: 0, content: 'test comment', user_id: User.last.id, place_id: Place.last.id)
-test_comment_2 = Comment.create(likes: 0, content: 'test comment numero 2', user_id: User.last.id, place_id: Place.last.id)
+

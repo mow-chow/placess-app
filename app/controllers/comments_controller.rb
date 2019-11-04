@@ -15,16 +15,7 @@ class CommentsController < ApplicationController
    
     def show
         @comment = Comment.find_by(id: params[:id])
-        render json: @comment.to_json(
-            :include => {
-                    :place => {
-                        :only => [:name, :location, :image]
-                    },
-                    :user => {
-                        :only => [:username, :bio, :image]
-                    }
-          }
-        )
+        render json: @comment
     end
 
     def create
@@ -33,6 +24,16 @@ class CommentsController < ApplicationController
         render json: @comment
     end
 
+    def update
+        @comment = Comment.find_by(id: params[:id])
+        @comment.update(comment_params)
+        render json: @comment
+    end
+
+    def destroy
+        @comment = Comment.find_by(id: params[:id])
+        @comment.destroy
+    end
 
     private
     def comment_params
