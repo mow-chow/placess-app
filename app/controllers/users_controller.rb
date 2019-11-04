@@ -22,7 +22,7 @@ class UsersController < ApplicationController
                         :only => [:content]
                     },
                     :places => {
-                        :only => [:name]
+                        :only => [:name, :location, :image]
                     }
           }
         )
@@ -31,14 +31,11 @@ class UsersController < ApplicationController
     def create
         @user = User.new(user_params)
         @user.save
-    end
-
-    def addComments
-        @comments = Comments.all
+        render json:@user
     end
 
     private
     def user_params
-      params.require(:user).permit!
+      params.require(:user).permit(:id, :username, :bio, :image)
     end
 end
