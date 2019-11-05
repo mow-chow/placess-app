@@ -9,7 +9,7 @@ var currentUserName
 var currentUserObject 
 var userNames = []
 var commentsArr 
-var likeCount 
+
 
 
 document.addEventListener('DOMContentLoaded', init)
@@ -65,13 +65,12 @@ function fetchUser(e) {
   e.preventDefault(e)
   uForm.style.display='none'
   currentUserName = e.target.username.value
-  currentUserObject = {username: currentUserName}
  
   //get request to optain user information
   fetch('http://localhost:3000/users')
   .then(resp => resp.json())
   .then(users => usersArr = users)
-  .then(() => checkUser(usersArr, currentUserName, currentUserObject))
+  .then(() => checkUser(usersArr, currentUserName))
 
 }
 
@@ -81,7 +80,6 @@ function checkUser(usersArr, currentUserName, userNames) {
       return user.username
     }
   )
-
   if (!userNames.includes(currentUserName)){
     alert('user doesnt exist! please signup first!')
   }
@@ -177,7 +175,6 @@ function submitComment(e, placeId) {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({
-      'likes': 0,
       'content': e.target.content.value,
       'user_id': userId,
       'place_id': id,
@@ -197,7 +194,7 @@ function fetchComments() {
 
 
 function renderComments(commentsArr) {
-  
+  console.log(commentsArr)
   const commentHeader = document.createElement('h2')
   commentHeader.innerText = 'Your Comments'
 
@@ -207,15 +204,15 @@ function renderComments(commentsArr) {
 }
 
 function buildCommentCard(comment) {
+const commentUserId = comment.user_id
 
 const singleComment = document.createElement('div')
 singleComment.id = 'single-comment'
 singleComment.dataset.id = comment.id
-singleComment.addEventListener('click', (e) => handleCommentDeleteBtn(e))
+singleComment.addEventListener('click', (e) => handleCommentDeleteBtn(e, commentUserId))
 
 const commentContent = document.createElement('p')
 commentContent.innerText = comment.content
-
 
 const commentDelete = document.createElement('button')
 commentDelete.innerText = 'Delete'
@@ -234,16 +231,25 @@ singleComment.append(commentUserName, commentUserImage, commentPlace, commentCon
 commentDiv.append(singleComment)
 }
 
-function handleCommentDeleteBtn(e) {
-const id = e.target.dataset.id
+function handleCommentDeleteBtn(e, commentUserId) {
+  const commentId = commentUserId
+  const userId = parseInt(userName.dataset.id)
+  const id = e.target.dataset.id
+  const comment = document.getElementById('single-comment')
+ 
+ if (commentId === userId){
   fetch('http://localhost:3000/comments/'+ id, {
     method: 'DELETE'
   })
- const comment = document.getElementById('single-comment')
+}
 
- if (comment.dataset.id === e.target.dataset.id) {
+if (comment.dataset.id === e.target.dataset.id) {
    comment.remove()
+ }else {
+   alert('you cant delete comments you havent created!')
  }
+
+  
 }
 
 
