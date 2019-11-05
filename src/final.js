@@ -232,23 +232,18 @@ commentDiv.append(singleComment)
 }
 
 function handleCommentDeleteBtn(e, commentUserId) {
-  const commentId = commentUserId
+   commentUserId
   const userId = parseInt(userName.dataset.id)
   const id = e.target.dataset.id
-  const comment = document.getElementById('single-comment')
  
- if (commentId === userId){
+ if (commentUserId == userId ){
   fetch('http://localhost:3000/comments/'+ id, {
     method: 'DELETE'
   })
+  e.target.parentElement.remove()
+}else{
+  alert('you are not authorized to delete this comment')
 }
-
-if (comment.dataset.id === e.target.dataset.id) {
-   comment.remove()
- }else {
-   alert('you cant delete comments you havent created!')
- }
-
   
 }
 
