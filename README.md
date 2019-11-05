@@ -1,1 +1,2 @@
 This is a review app which was created with the intent to allow Users to post suggestions about places they have read in different neighbordhoods in Atlanta, Ga. The frontend is build with vanilla JS and the backend with Ruby on Rails. Frontend is located in the 'master' branch and backend is in the 'new' branch. 
+As a user you can create a profile, add a comment to a particular neighborhood and delete a comment. 
