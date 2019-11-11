@@ -1,10 +1,8 @@
-
-<!DOCTYPE html>
+  <!DOCTYPE html>
 <html >
   <head>
     <title>Review a Place</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="styles.css">
   </head>
   <body>
     <!-- where everything is happening -->
@@ -13,50 +11,36 @@
       <button id='up'>Sign Up</button>
       <button id='in'>Sign In</button>
       <!-- user signup form -->
-      <form id='sign-up' style='display: none' >
+      <form id='sign-up' style='display:none'>
         Username: <input type='text' placeholder='username' name="username">
         Bio: <input type='text' name="bio"placeholder='short description'>
         Image: <input name ="image" type='url' placeholder='image url'>
         <input id = 'submit-btn' type="submit" value="Sign Up">
       </form>
       <!-- user signin form -->
-      <form id='sign-in' style='display: none'>
+      <form id='sign-in' style='display:none'>
         Username: <input type='text' placeholder='username' name="username">
         <input id = 'submit-btn' type="submit" value="Sign In">
-      </form> 
-      <!-- user profile card -->
-      <center>
-      <div  id='user-info'>
-        <h3 id='user-name'></h3>
-        <img id='user-avatar'>
-        <p id='user-bio'></p>
-        <!-- inject add a post button -->
-        <div id='my-posts'>
-          <!-- inject show my posts button -->
-          <!-- where users posts will be injected -->
-        </div>
+      </form>
+      <div  id='user-profile' >
+         
       </div>
-    </center>
-  </div>
-        <center>
+    </div>
+      <!-- user create new post form -->
+      <div id='comments'>
           <div id='places'>
-            <ul id='places-list'>
-
-            </ul>
-              <!-- list of places -->
+             <ul id='places-list'>
+                <!-- insert list of places here -->
+             </ul>
           </div>
-        </center>
               <!-- where show places button will be injected -->
-        <form id='post-form' style='display:none'>
+        <form id='comment-form' style='display:none'>
           Comment: <input name="content" type='text' placeholder='tell us more'>
           <input type="submit" value="Submit">
-        </form>
-        <center>
-        <div id='comment-card'>
-               <!-- inject comment cards -->
-        </div>
-      </center>
-    <!-- <script src="./src/users.js"></script> -->
-    <script src="./src/final.js"></script>
+        </form> 
+    <script src="./src/users.js"></script>
+    <script src="./src/places.js"></script>
+    <script src="./src/comments.js"></script>
+    <script src="./src/index.js"></script>
   </body>
 </html>

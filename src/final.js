@@ -3,7 +3,7 @@ const uForm = document.getElementById('sign-in')
 const cForm = document.getElementById('post-form')
 const placesDiv = document.getElementById('places')
 const userName = document.getElementById('user-name')
-const commentDiv = document.getElementById('card') 
+const commentDiv = document.getElementById('comment-card') 
 var usersArr
 var currentUserName
 var currentUserObject 
@@ -119,7 +119,7 @@ function handleAddCommentBtn() {
 }
 
 function handleShowCommentBtn() {
-  document.getElementById('card').innerHTML=''
+  document.getElementById('comment-card').innerHTML=''
   fetchComments()
 }
 
