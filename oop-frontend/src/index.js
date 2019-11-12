@@ -31,11 +31,13 @@ function handleClickEvent(e) {
     fetchComments()
   }else if(e.target.className === 'place') {
     renderCommentForm(e)
-    placesUl.innerHTML = ''
+    while (placesUl.firstChild) placesUl.removeChild(placesUl.firstChild)
     placeId = parseInt(e.target.dataset.id)
   }else if(e.target.id === 'delete-comment-bttn'){
     currentUserId = parseInt(e.target.dataset.id)
     deleteComment(e, currentUserId)
+  }else if(e.target.id === 'logout'){
+   location.reload()
   }
 }
 
@@ -71,10 +73,15 @@ function postUser(e){
       "image": e.target.image.value
     })
   })  
+  location.reload()
 
 }
 
 function toggleSignIn() {
+  while (commentsDiv.firstChild) commentsDiv.removeChild(commentsDiv.firstChild)
+  while (userProfDiv.firstChild) userProfDiv.removeChild(userProfDiv.firstChild)
+
+
     //show signin form
     uForm.style.display='block'
     //add submit event listener to form
@@ -83,7 +90,8 @@ function toggleSignIn() {
 }
 
 function fetchUser(e) {
-  e.preventDefault(e)
+  e.preventDefault()
+  
   uForm.style.display='none'
   currentUserName = e.target.username.value
  
@@ -127,11 +135,12 @@ function fetchPlaces(e) {
 }
 
 function renderListOfPlaces(placeObj, e) {
+  
   const place = new Place(placeObj)
+  placesDiv.dataset.id = e.target.dataset.id
 
   placesUl.insertAdjacentHTML('afterbegin', place.render())
 
-  placesDiv.dataset.id = e.target.dataset.id
   
 }
 
@@ -143,24 +152,27 @@ function renderCommentForm(){
 }
 
 function handleCommentSubmit(e) {
-  e.preventDefault
+  e.preventDefault(e)
   cForm.style.display='none'
   const id = parseInt(placesDiv.dataset.id)
 
   const commentObj = {
     'content': e.target.content.value, 
     'user_id': id,
-    'place_id': placeId}
-
+    'place_id': placeId,
+  }
+debugger
   const reqObj = {
     method: 'POST',
     headers: {
+      'Accept': 'application/json',
       'Content-Type': 'application/json'
     },
     body: JSON.stringify(commentObj)
   }
 
-  fetch('http://localhost:3000/comments', reqObj )
+  fetch('http://localhost:3000/comments', reqObj)
+  
   
 }
 
